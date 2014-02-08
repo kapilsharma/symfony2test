@@ -8,6 +8,7 @@
 /build/
 /vendor/
 /bin/
+/nbproject/
 /composer.phar
 /composer.lock
 /README.md.bak
@@ -15,3 +16,4 @@
 /UPGRADE-2.3.md
 /UPGRADE-2.4.md
 /UPGRADE.md
+/nbproject/private/
