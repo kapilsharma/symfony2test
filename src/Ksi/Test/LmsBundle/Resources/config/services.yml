@@ -1,0 +1,7 @@
+parameters:
+#    ksi_test_lms.example.class: Ksi\Test\LmsBundle\Example
+
+services:
+#    ksi_test_lms.example:
+#        class: %ksi_test_lms.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
