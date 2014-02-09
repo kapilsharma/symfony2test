@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Book
  *
- * @ORM\Table()
+ * @ORM\Table(name="book")
  * @ORM\Entity(repositoryClass="Ksi\Test\LmsBundle\Entity\BookRepository")
  */
 class Book
@@ -27,6 +27,14 @@ class Book
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
+    
+    /**
+     * var integer
+     * 
+     * @ORM\ManyToOne(targetEntity="Publisher", inversedBy="books")
+     * @ORM\JoinColumn(name="publisher_id", referencedColumnName="id")
+     */
+    protected $publisher;
 
     /**
      * @var string
@@ -38,7 +46,7 @@ class Book
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="publishDate", type="date")
+     * @ORM\Column(name="publish_date", type="date")
      */
     private $publishDate;
 
@@ -82,7 +90,7 @@ class Book
     {
         return $this->name;
     }
-
+    
     /**
      * Set isbn
      *
@@ -150,5 +158,28 @@ class Book
     public function getPrice()
     {
         return $this->price;
+    }
+
+    /**
+     * Set publisher
+     *
+     * @param \Ksi\Test\LmsBundle\Entity\Publisher $publisher
+     * @return Book
+     */
+    public function setPublisher(\Ksi\Test\LmsBundle\Entity\Publisher $publisher = null)
+    {
+        $this->publisher = $publisher;
+
+        return $this;
+    }
+
+    /**
+     * Get publisher
+     *
+     * @return \Ksi\Test\LmsBundle\Entity\Publisher 
+     */
+    public function getPublisher()
+    {
+        return $this->publisher;
     }
 }

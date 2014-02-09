@@ -23,7 +23,7 @@ class Publisher
     private $id;
     
     /**
-     * @ORM\OneToMany(targetEntity="Book", mappedBy="publisher_id")
+     * @ORM\OneToMany(targetEntity="Book", mappedBy="publisher")
      */
     private $books;
 
@@ -64,16 +64,6 @@ class Publisher
     public function getId()
     {
         return $this->id;
-    }
-    
-    /**
-     * Get Books
-     * 
-     * @return Doctrine\Common\Collections\ArrayCollection Books
-     */
-    public function getBooks()
-    {
-        return $this->books;
     }
 
     /**
@@ -143,5 +133,45 @@ class Publisher
     public function getCountry()
     {
         return $this->country;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->books = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add books
+     *
+     * @param \Ksi\Test\LmsBundle\Entity\Book $books
+     * @return Publisher
+     */
+    public function addBook(\Ksi\Test\LmsBundle\Entity\Book $books)
+    {
+        $this->books[] = $books;
+
+        return $this;
+    }
+
+    /**
+     * Remove books
+     *
+     * @param \Ksi\Test\LmsBundle\Entity\Book $books
+     */
+    public function removeBook(\Ksi\Test\LmsBundle\Entity\Book $books)
+    {
+        $this->books->removeElement($books);
+    }
+
+    /**
+     * Get books
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getBooks()
+    {
+        return $this->books;
     }
 }
